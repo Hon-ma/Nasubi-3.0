@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>なすび第三保管室(仮)</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ユーザー名入力モーダル -->
+  <div id="usernameModal" class="modal-backdrop">
+    <div class="modal">
+      <h2 id="modalTitle">あなたの名前を入力してください</h2>
+      <input type="text" id="usernameInput" placeholder="例：Nasubi" maxlength="20" />
+      <button id="usernameSubmit">OK</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- サイドバー：スレッド一覧 -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>スレッド一覧</h2>
+        <button id="addRoomBtn">＋</button>
+      </div>
+      <ul id="roomList"></ul>
+    </div>
+
+    <!-- メイン：チャットエリア -->
+    <div class="main">
+      <!-- 現在のルーム名と参加者情報 -->
+      <div class="room-header">
+        <h2 id="currentRoomName">(未選択)</h2>
+        <div class="room-header-actions">
+          <button id="exportBtn" class="export-import-btn">書き出し</button>
+          <button id="importBtn" class="export-import-btn">読み込み</button>
+          <button id="changeNameBtn" title="名前変更">名前変更</button>
+          <div id="participantsInfo">(参加者数: 0)</div>
+        </div>
+      </div>
+      <!-- スレッド未選択時メッセージ -->
+      <div id="noSelectionMessage" class="no-selection">
+        ←スレッドを作成または選択してください
+      </div>
+      <!-- メッセージリスト -->
+      <div id="messageContainer" class="messages"></div>
+      <!-- 返信プレビューを表示するエリア -->
+      <div id="replyPreview" class="reply-preview"></div>
+      <!-- 入力エリア -->
+      <div class="input-area">
+        <textarea
+          id="messageInput"
+          placeholder="メッセージを入力..."
+          maxlength="500"
+          rows="2"
+        ></textarea>
+        <button id="sendBtn">送信</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Socket.io クライアント -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- client.js を最後に読み込む -->
+  <script src="client.js"></script>
+</body>
+</html>
